@@ -24,8 +24,17 @@
         <button ng-click='qc.letsplay()'>Let's Play Jeopardy!</button>
     </div>
     <div ng-hide='qc.showform'>
-        <h3>Test</h3>
-        <p>Questions will appear here</p>
+        <h3>Let's play Jeopardy</h3>
+        <div ng-repeat="question in qc.questions">
+            <h4>[{{$index + 1}}]</h4>
+            <p>Category: {{ question.category.title }}</p>
+            <p>Value: {{ question.value }}</p>
+            <p>{{ question.question }}</p>
+
+            <input type='text'></input>
+        </div>
+        <br>
+        <button ng-click='qc.submit()'>Check My Answers</button>
         <button ng-click='qc.stopplay()'>Back to settings</button>
 
     </div>

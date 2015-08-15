@@ -19,6 +19,7 @@ quizzer.controller('quizCtrl', function (questionFactory) {
     vm.showtitle = true;
     vm.showquestions = false;
     vm.showans = false;
+    //temporary hard-coded until API figured out
     vm.questions = [{
         "id": 16479,
         "answer": "Napoleon",

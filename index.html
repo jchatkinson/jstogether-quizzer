@@ -5,59 +5,122 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="A simple quiz app for /r/jstogether project 0">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizzer</title>
+
+    <!-- Angular App -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
     <script src="app.js"></script>
-
-    <title>Quizzer</title>
+    <!-- Material Design -->
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.indigo-blue.min.css" />
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href='//fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en' rel='stylesheet' type='text/css'>
+    <style>
+        #view-source {
+            position: fixed;
+            display: block;
+            right: 0;
+            bottom: 0;
+            margin-right: 40px;
+            margin-bottom: 40px;
+            z-index: 900;
+        }
+    </style>
 </head>
 
 <body ng-app="quizzerApp" ng-controller="quizCtrl as qc">
-    <h1>Quizzer</h1>
-    <div ng-show='qc.showtitle'>
-        <h2>An ugly, ugly quiz</h2>
-        <p>Built with AngularJS, and uses the <a href='jservice.io'>jservice.io api</a> to get Jeopardy! questions</p>
-    </div>
-    <div ng-show='qc.showtitle'>
-        <label>How Many Questions would you like?</label>
-        <input type='number' min=1 max=30 ng-model='qc.numQuestions'>
-        <p>We'll be serving up: {{ qc.numQuestions }} questions</p>
-        <button ng-click='qc.letsplay()'>Let's Play Jeopardy!</button>
-    </div>
-    <div ng-show='qc.showquestions'>
-        <h3>Let's play Jeopardy</h3>
-        <div ng-repeat="question in qc.questions">
-            <h4>Question [{{$index + 1}}]</h4>
-            <p>Category: {{ question.category.title }}</p>
-            <p>Value: {{ question.value }}</p>
-            <p>{{ question.question }}</p>
+    <div class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout ">
+        <header class="demo-header mdl-layout__header mdl-layout__header--scroll">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title">Quizzer</span>
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+            </div>
+        </header>
 
-            <input type='text' ng-model="qc.questions[$index].useranswer"></input>
-        </div>
-        <br>
-        <button ng-click='qc.submit()'>Check My Answers</button>
-        <button ng-click='qc.stopplay()'>Back to settings</button>
-    </div>
-    <div ng-show='qc.showans'>
-        <h3>You Scored: {{ qc.score }} points!</h3>
-        <div ng-repeat="question in qc.questions">
-            <h4>Question {{$index + 1}} - {{ question.value }} Points</h4>
-            <p>{{ question.question }}</p>
-            <p>Your Answer: {{question.useranswer}}</p>
-            <p>Correct Answer: {{question.answer}}</p>
-        </div>
-        <button ng-click='qc.stopplay()'>Back to Main</button>
-    </div>
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                <!-- Your content goes here -->
+                <div class='mdl-grid'>
+                    <div ng-show='qc.showtitle' class="mdl-cell mdl-cell--6-col">
+                        <div>
+                            <h4>A simple quiz app</h4>
+                            <p>Using <a href="https://angularjs.org/">AngularJS</a>, <a href="http://www.getmdl.io/">Material Design Lite</a>, and the <a href='jservice.io'>jservice.io</a> api</p>
+                        </div>
+                        <img src='/assets/trebek1.jpg'>
+                        <div>
+                            <label for="numQs">
+                                <strong>How many questions would you like?</strong>
+                            </label>
+                            <input type='number' id="numQs" min=1 max=30 ng-model='qc.numQuestions'>
+                            <br>
+                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" ng-click='qc.letsplay()'>Let's Play!</button>
+                        </div>
+                    </div>
 
-    <div ng-show='qc.showtitle'>
-        <h2>Some Ideas for improvements if time permits:</h2>
-        <ul>
-            <li>Clean up and beautify</li>
-            <li>Some more user-settings like number of questions, difficulty, etc</li>
-            <li>A big picture of everyone's favorite Canadian, Alex Trebek</li>
-        </ul>
-    </div>
-    <p>Created by <a href="https://github.com/jchatkinson/jstogether-quizzer">jchatkinson</a> for <a href='https://www.reddit.com/r/jstogether/'>/r/jstogether</a> <a href='https://www.reddit.com/r/jstogether/comments/3fr1ai/project_0_quiz_app/'>Project 0</a></p>
+                    <div ng-show='qc.showquestions'>
+                        <div>
+                            <h4>Try Answering these {{qc.numQuestions}} questions:</h4>
+                            <div ng-repeat="question in qc.questions">
+                                <div>
+                                    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-shadow--4dp">
+                                        <div class="mdl-card__title">
+                                            <h2 class="mdl-card__title-text">Question {{$index + 1}}</h2>
+                                        </div>
+                                        <div class="mdl-card__supporting-text">
+                                            <h2 class='mdl-card__subtitle-text'>{{ question.category.title }} for {{question.value }} dollars</h2>
+                                            <p>{{ question.question }}</p>
+                                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label textfield-demo">
+                                                <input type='text' id="answer" class="mdl-textfield__input" ng-model="qc.questions[$index].useranswer"></input>
+                                                <label class="mdl-textfield__label" for="answer">What is...</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" ng-click='qc.submit()'>Check My Answers</button>
+                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" ng-click='qc.stopplay()'>Back to settings</button>
+                        </div>
+                    </div>
+
+                    <div ng-show='qc.showans'>
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <h3>You Scored: {{ qc.score }} points!</h3>
+                            <img src='/assets/trebek2.jpg' alt='Trebek'>
+                        </div>
+                        <div ng-repeat="question in qc.questions">
+                            <div class="mdl-card mdl-cell mdl-cell--6-col">
+                                <h4>Question {{$index + 1}} - {{ question.value }} Points</h4>
+                                <p>{{ question.question }}</p>
+                                <p>Your Answer: {{question.useranswer}}</p>
+                                <p>Correct Answer: {{question.answer}}</p>
+                            </div>
+                        </div>
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" ng-click='qc.stopplay()'>Back to Main</button>
+                    </div>
+
+                    <div ng-show='qc.showtitle' class="mdl-cell mdl-cell--6-col" <div>
+                        <h4>Some Ideas for improvements if time permits:</h4>
+                        <ul>
+                            <li>Get the API working so new questions are generated</li>
+                            <li>Clean up and beautify</li>
+                            <li>Some more user-settings like number of questions, difficulty, etc</li>
+                            <li><del>A big picture of everyone's favorite Canadian, Alex Trebek</del></li>
+                        </ul>
+                    </div>
+                </div>
+        </main>
+        <footer class="mdl-mini-footer">
+            <div>
+                Built by <a href='https://github.com/jchatkinson/jstogether-quizzer'>jchatkinson</a> for <a href='https://www.reddit.com/r/jstogether/comments/3fr1ai/project_0_quiz_app/'>Project 1</a> of <a href='https://www.reddit.com/r/jstogether/'>/r/JSTogether</a>
+            </div>
+        </footer>
+
+        </div>
+
 </body>
 
 </html>

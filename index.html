@@ -13,17 +13,18 @@
 </head>
 
 <body ng-app="quizzerApp" ng-controller="quizCtrl as qc">
-    <h1>This is a quiz</h1>
-    <h2>An ugly, ugly quiz</h2>
-    <p>Built with AngularJS, and uses the <a href='jservice.io'>jservice.io api</a> to get Jeopardy! questions</p>
-
-    <div ng-show='qc.showform'>
+    <h1>Quizzer</h1>
+    <div ng-show='qc.showtitle'>
+        <h2>An ugly, ugly quiz</h2>
+        <p>Built with AngularJS, and uses the <a href='jservice.io'>jservice.io api</a> to get Jeopardy! questions</p>
+    </div>
+    <div ng-show='qc.showtitle'>
         <label>How Many Questions would you like?</label>
         <input type='number' min=1 max=30 ng-model='qc.numQuestions'>
         <p>We'll be serving up: {{ qc.numQuestions }} questions</p>
         <button ng-click='qc.letsplay()'>Let's Play Jeopardy!</button>
     </div>
-    <div ng-hide='qc.showform'>
+    <div ng-show='qc.showquestions'>
         <h3>Let's play Jeopardy</h3>
         <div ng-repeat="question in qc.questions">
             <h4>Question [{{$index + 1}}]</h4>
@@ -40,27 +41,22 @@
     <div ng-show='qc.showans'>
         <h3>You Scored: {{ qc.score }} points!</h3>
         <div ng-repeat="question in qc.questions">
-            <h4>Question [{{$index + 1}}]</h4>
-            <p>Value: {{ question.value }}</p>
+            <h4>Question {{$index + 1}} - {{ question.value }} Points</h4>
             <p>{{ question.question }}</p>
             <p>Your Answer: {{question.useranswer}}</p>
             <p>Correct Answer: {{question.answer}}</p>
         </div>
+        <button ng-click='qc.stopplay()'>Back to Main</button>
     </div>
 
-
-
-
-
-
-
-    <h2>Some Ideas for improvements if time permits:</h2>
-    <ul>
-        <li>Clean up and beautify</li>
-        <li>Some more user-settings like number of questions, difficulty, etc</li>
-        <li>A big picture of everyone's favorite Canadian, Alex Trebek</li>
-    </ul>
-
+    <div ng-show='qc.showtitle'>
+        <h2>Some Ideas for improvements if time permits:</h2>
+        <ul>
+            <li>Clean up and beautify</li>
+            <li>Some more user-settings like number of questions, difficulty, etc</li>
+            <li>A big picture of everyone's favorite Canadian, Alex Trebek</li>
+        </ul>
+    </div>
     <p>Created by <a href="https://github.com/jchatkinson/jstogether-quizzer">jchatkinson</a> for <a href='https://www.reddit.com/r/jstogether/'>/r/jstogether</a> <a href='https://www.reddit.com/r/jstogether/comments/3fr1ai/project_0_quiz_app/'>Project 0</a></p>
 </body>
 

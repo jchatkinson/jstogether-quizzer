@@ -16,7 +16,8 @@ quizzer.controller('quizCtrl', function (questionFactory) {
     var vm = this;
     vm.score = 0;
     vm.numQuestions = 4;
-    vm.showform = true;
+    vm.showtitle = true;
+    vm.showquestions = false;
     vm.showans = false;
     vm.questions = [{
         "id": 16479,
@@ -101,14 +102,17 @@ quizzer.controller('quizCtrl', function (questionFactory) {
         //                q.status = 'Unable to load customer data: ' + error.message;
         //            });
 
-
         // show the questions
-        vm.showform = !vm.showform
+        vm.showtitle = false;
+        vm.showquestions = true;
+        vm.showans = false;
     }
 
 
     vm.stopplay = function () {
-        vm.showform = !vm.showform;
+        vm.showtitle = true;
+        vm.showquestions = false;
+        vm.showans = false;
     }
     vm.submit = function () {
         //score the answers
@@ -119,9 +123,8 @@ quizzer.controller('quizCtrl', function (questionFactory) {
 
         }
 
-        //hide the submission form
-        vm.showform = !vm.showform;
-        //show the answers
+        vm.showtitle = false;
+        vm.showquestions = false;
         vm.showans = true;
 
     }

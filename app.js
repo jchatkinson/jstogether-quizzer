@@ -13,11 +13,12 @@ quizzer.factory('questionFactory', ['$http', function ($http) {
 }]);
 
 quizzer.controller('quizCtrl', function (questionFactory) {
-    q = this;
-    q.score = 0;
-    q.numQuestions = 4;
-    q.showform = true;
-    q.questions = [{
+    var vm = this;
+    vm.score = 0;
+    vm.numQuestions = 4;
+    vm.showform = true;
+    vm.showans = false;
+    vm.questions = [{
         "id": 16479,
         "answer": "Napoleon",
         "question": "The Bata Shoe Museum in Toronto features a pair of black silk socks worn by this emperor on St. Helena",
@@ -89,8 +90,8 @@ quizzer.controller('quizCtrl', function (questionFactory) {
             "updated_at": "2014-02-11T22:47:35.305Z",
             "clues_count": 245
         }
-    }]
-    q.letsplay = function () {
+    }];
+    vm.letsplay = function () {
         //API request for 'q.numQuestions' questions
         //        questionFactory.getnRandomQuestions(q.numQuestions)
         //            .success(function (response) {
@@ -102,15 +103,27 @@ quizzer.controller('quizCtrl', function (questionFactory) {
 
 
         // show the questions
-        q.showform = !q.showform
+        vm.showform = !vm.showform
     }
 
 
-    q.stopplay = function () {
-        q.showform = !q.showform
+    vm.stopplay = function () {
+        vm.showform = !vm.showform;
     }
-    q.submit = function () {
-        q.showans = true;
+    vm.submit = function () {
+        //score the answers
+        for (var i = 0; i < vm.questions.length; i++) {
+            if (vm.questions[i].useranswer.toLowerCase() == vm.questions[i].answer.toLowerCase()) {
+                vm.score += vm.questions[i].value;
+            }
+
+        }
+
+        //hide the submission form
+        vm.showform = !vm.showform;
+        //show the answers
+        vm.showans = true;
+
     }
 
 });

@@ -1,7 +1,7 @@
 var quizzer = angular.module('quizzerApp', []);
 
 quizzer.factory('questionFactory', ['$http', function ($http) {
-    var urlBase = 'http://jservice.io/api/random';
+    var urlBase = 'https://jsonp.afeld.me/?url=http://jservice.io/api/random';
     var dataFactory = {};
     dataFactory.getRandomQuestion = function () {
         return $http.get(urlBase);

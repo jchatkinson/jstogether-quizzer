@@ -26,6 +26,11 @@
             margin-bottom: 40px;
             z-index: 900;
         }
+        
+        .img-trebek {
+            height: 300px;
+            width: auto;
+        }
     </style>
 </head>
 
@@ -49,7 +54,7 @@
                             <h4>A simple quiz app</h4>
                             <p>Using <a href="https://angularjs.org/">AngularJS</a>, <a href="http://www.getmdl.io/">Material Design Lite</a>, and the <a href='jservice.io'>jservice.io</a> api</p>
                         </div>
-                        <img src='https://jchatkinson.github.io/jstogether-quizzer/assets/trebek1.jpg'>
+                        <img src='https://jchatkinson.github.io/jstogether-quizzer/assets/trebek1.jpg' class="img-trebek">
                         <div>
                             <label for="numQs">
                                 <strong>How many questions would you like?</strong>
@@ -106,6 +111,7 @@
                         <h4>Some Ideas for improvements if time permits:</h4>
                         <ul>
                             <li>Get the API working so new questions are generated</li>
+                            <li>Validation and feedback (grey out submit button until all questions are answered)</li>
                             <li>Clean up and beautify</li>
                             <li>Some more user-settings like number of questions, difficulty, etc</li>
                             <li><del>A big picture of everyone's favorite Canadian, Alex Trebek</del></li>

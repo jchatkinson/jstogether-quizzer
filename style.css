@@ -1,0 +1,64 @@
+/* Style overrides go here 
+
+#view-source {
+    position: fixed;
+    display: block;
+    right: 0;
+    bottom: 0;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    z-index: 900;
+}
+*/
+
+.img-trebek {
+    height: 300px;
+    width: auto;
+}
+
+.layout-transparent {
+    background-origin: border-box;
+    background: url('../assets/jeopardy3.jpg') top / cover;
+    background-origin: padding-box;
+}
+
+.layout-transparent .mdl-layout__header,
+.mdl-layout__footer,
+.layout-transparent .mdl-layout__drawer-button {
+    /* This background is dark, so we set text to white. Use 87% black instead if
+your background is light. */
+    color: white;
+    font-weight: bold;
+}
+
+.white-center-text {
+    color: white;
+    text-align: center;
+}
+
+.float-right {
+    float: right;
+    margin-right: 30px;
+}
+
+.btn-float-right {
+    float: right;
+}
+
+.mdl-mini-footer {
+    opacity: 0.8;
+}
+
+input[type="number"] {
+    width: 40px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: transparent;
+}
+
+.jeopardy-card-wide {
+    width: 512px;
+    float: right;
+    margin-right: 10px;
+}

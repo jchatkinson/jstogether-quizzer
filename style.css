@@ -18,7 +18,7 @@
 
 .layout-transparent {
     background-origin: border-box;
-    background: url('../assets/jeopardy3.jpg') top / cover;
+    background: url('/jstogether-quizzer/assets/jeopardy3.jpg') top / cover;
     background-origin: padding-box;
 }
 

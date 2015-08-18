@@ -19,7 +19,7 @@ quizzer.controller('quizCtrl', function (questionFactory) {
     vm.showtitle = true;
     vm.showquestions = false;
     vm.showans = false;
-    //temporary hard-coded until API figured out
+    //intialize some questions in case of API issue
     vm.questions = [
         {
             "id": 16479,

@@ -94,7 +94,7 @@
                     <div ng-show='qc.showans'>
                         <div class="mdl-cell mdl-cell--12-col">
                             <h3>You Scored: {{ qc.score }} points!</h3>
-                            <img src='https://jchatkinson.github.io/jstogether-quizzer/assets/trebek2.jpg' alt='Trebek'>
+                            <img src='https://jchatkinson.github.io/jstogether-quizzer/assets/trebek2.jpg' alt='Trebek' class="img-trebek">
                         </div>
                         <div ng-repeat="question in qc.questions">
                             <div class="mdl-card mdl-cell mdl-cell--6-col">
@@ -110,7 +110,7 @@
                     <div ng-show='qc.showtitle' class="mdl-cell mdl-cell--6-col" <div>
                         <h4>Some Ideas for improvements if time permits:</h4>
                         <ul>
-                            <li>Get the API working so new questions are generated (Currently CORS issue)</li>
+                            <li><del>Get the API working so new questions are generated (Currently CORS issue)</del></li>
                             <li>Validation and feedback (grey out submit button until all questions are answered)</li>
                             <li>Clean up and beautify</li>
                             <li>Some more user-settings like number of questions, difficulty, etc</li>
